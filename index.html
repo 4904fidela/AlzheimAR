@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlzheimAR - Natural User Interface for Alzheimer's Care</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (via CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">
+            <span class="logo-icon"><i data-lucide="glasses"></i></span>
+            <span class="logo-text">Alzheim<span>AR</span></span>
+        </div>
+        <nav class="nav-links">
+            <a href="#simulator" class="active">NUI Simulator</a>
+            <a href="#persona">Patient Persona</a>
+            <a href="#methodology">Design Method</a>
+            <a href="#technical">Specs</a>
+        </nav>
+        <div class="status-indicator">
+            <span class="pulse-dot green"></span>
+            <span class="status-txt">System Active (v1.0)</span>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">The glasses that remember – <span>so she doesn't have to.</span></h1>
+            <p class="hero-desc">
+                An interactive Natural User Interface (NUI) design simulation for patients with Moderate Alzheimer's.
+                Designed for passive interaction with zero learning curve, keeping Ibu Wati safe, independent, and connected.
+            </p>
+        </section>
+
+        <!-- Simulator Section -->
+        <section id="simulator" class="simulator-section">
+            <div class="simulator-grid">
+                
+                <!-- Left Column: Controls -->
+                <div class="control-panel glass-card">
+                    <h2 class="section-title"><i data-lucide="sliders"></i> Simulation Panel</h2>
+                    <p class="section-desc">Select a scenario to update the patient's AR display (center) and witness real-time caregiver telemetry (right).</p>
+                    
+                    <div class="control-group">
+                        <span class="group-label">Daily Patient Scenarios</span>
+                        
+                        <button class="scenario-btn active" data-scenario="night-toilet">
+                            <span class="btn-num">01</span>
+                            <span class="btn-info">
+                                <span class="btn-title">Night Toilet Walk</span>
+                                <span class="btn-desc">UC07 - Passive glowing path guidance</span>
+                            </span>
+                            <span class="btn-icon"><i data-lucide="moon"></i></span>
+                        </button>
+
+                        <button class="scenario-btn" data-scenario="make-tea">
+                            <span class="btn-num">02</span>
+                            <span class="btn-info">
+                                <span class="btn-title">Making Tea (Task Guidance)</span>
+                                <span class="btn-desc">UC05 - Step-by-step contextual indicators</span>
+                            </span>
+                            <span class="btn-icon"><i data-lucide="coffee"></i></span>
+                        </button>
+
+                        <button class="scenario-btn" data-scenario="face-recognition">
+                            <span class="btn-num">03</span>
+                            <span class="btn-info">
+                                <span class="btn-title">Face Recognition (Budi)</span>
+                                <span class="btn-desc">UC03 - Passive relation labels (Grandson)</span>
+                            </span>
+                            <span class="btn-icon"><i data-lucide="user-check"></i></span>
+                        </button>
+
+                        <button class="scenario-btn" data-scenario="safe-zone">
+                            <span class="btn-num">04</span>
+                            <span class="btn-info">
+                                <span class="btn-title">Safe Zone boundary</span>
+                                <span class="btn-desc">UC02 & UC06 - Geofence home navigation</span>
+                            </span>
+                            <span class="btn-icon"><i data-lucide="map-pin"></i></span>
+                        </button>
+
+                        <button class="scenario-btn" data-scenario="med-prompt">
+                            <span class="btn-num">05</span>
+                            <span class="btn-info">
+                                <span class="btn-title">Medication Reminder</span>
+                                <span class="btn-desc">UC01 - Soft auto-dismiss prompt</span>
+                            </span>
+                            <span class="btn-icon"><i data-lucide="pill"></i></span>
+                        </button>
+                    </div>
+
+                    <div class="control-group">
+                        <span class="group-label">NUI Modalities (Triggers)</span>
+                        <div class="trigger-row">
+                            <button class="trigger-btn" id="voice-trigger">
+                                <i data-lucide="mic"></i>
+                                <span>Voice 'Tolong'</span>
+                            </button>
+                            <button class="trigger-btn" id="gesture-trigger">
+                                <i data-lucide="hand"></i>
+                                <span>SOS Fist (Hold 3s)</span>
+                                <span class="progress-bar"></span>
+                            </button>
+                        </div>
+                        <div class="trigger-row">
+                            <button class="trigger-btn secondary" id="battery-toggle">
+                                <i data-lucide="battery-medium" id="battery-icon"></i>
+                                <span>Battery: 85%</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="guidelines-snippet">
+                        <div class="info-header">
+                            <i data-lucide="shield-alert" class="emerald"></i>
+                            <span>NUI Calming Principles</span>
+                        </div>
+                        <ul>
+                            <li><strong>Emerald-green (#00A86B) only:</strong> No anxiety-inducing red/orange overlay for patient.</li>
+                            <li><strong>1 Element Limit:</strong> Only one AR prompt visible at a time.</li>
+                            <li><strong>Auto-dismiss:</strong> Prompts fade out after 8-12s. No buttons.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Center Column: AR Lenses Viewport -->
+                <div class="viewport-panel">
+                    <div class="viewport-header">
+                        <span class="tag">PATIENT-FACING AR VIEW (LENS SIMULATOR)</span>
+                        <span class="status-indicator-pill"><i data-lucide="eye"></i> PASSIVE HUD</span>
+                    </div>
+
+                    <div class="glasses-lens-outer">
+                        <div class="glasses-frame-left"></div>
+                        <div class="glasses-frame-right"></div>
+                        
+                        <div class="lens-content" id="lens-viewport">
+                            <!-- Background scene -->
+                            <div class="scene-bg" id="scene-bg-element"></div>
+                            
+                            <!-- Vignette/Dust AR glasses simulation -->
+                            <div class="hud-glare"></div>
+                            <div class="hud-safe-bounds"></div>
+
+                            <!-- AR Overlays (Dynamic depending on state) -->
+                            <div class="hud-overlay" id="hud-overlay">
+                                
+                                <!-- Night Navigation (Scenario 1) -->
+                                <div class="ar-element" id="ar-night-toilet">
+                                    <div class="floor-path">
+                                        <!-- SVG animated arrows representing path -->
+                                        <svg viewBox="0 0 100 100" class="path-svg">
+                                            <path d="M 50,90 Q 55,75 35,55 T 45,15" fill="none" stroke="#00A86B" stroke-width="4" stroke-dasharray="10 6" class="dash-path"/>
+                                            <polygon points="45,10 40,17 50,17" fill="#00A86B" class="path-arrow-head"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ar-card-bottom glass-card-hud animate-fade-in">
+                                        <i data-lucide="navigation"></i>
+                                        <span>Menuju Kamar Mandi (Toilet)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Making Tea (Scenario 2) -->
+                                <div class="ar-element hidden" id="ar-make-tea">
+                                    <div class="gaze-target-hotspot stove" style="top: 60%; left: 35%;" data-step="1">
+                                        <div class="ping"></div>
+                                        <span class="step-num">1</span>
+                                        <span class="step-label">Nyalakan kompor</span>
+                                    </div>
+                                    <div class="gaze-target-hotspot kettle" style="top: 45%; left: 55%;" data-step="2">
+                                        <div class="ping"></div>
+                                        <span class="step-num">2</span>
+                                        <span class="step-label">Kettle - Isi air</span>
+                                    </div>
+                                    <div class="gaze-target-hotspot tea-box" style="top: 35%; left: 78%;" data-step="3">
+                                        <div class="ping"></div>
+                                        <span class="step-num">3</span>
+                                        <span class="step-label">Ambil teh</span>
+                                    </div>
+                                    <div class="gaze-target-hotspot cup" style="top: 55%; left: 75%;" data-step="4">
+                                        <div class="ping"></div>
+                                        <span class="step-num">4</span>
+                                        <span class="step-label">Ambil cangkir</span>
+                                    </div>
+                                    <div class="ar-card-top glass-card-hud animate-fade-in">
+                                        <i data-lucide="list-checks"></i>
+                                        <span>Panduan Membuat Teh (1/4)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Face Recognition (Scenario 3) -->
+                                <div class="ar-element hidden" id="ar-face-rec">
+                                    <!-- Bounding box around Budi's face in the image -->
+                                    <div class="face-bounding-box" style="top: 22%; left: 37%; width: 26%; height: 32%;">
+                                        <div class="corner tl"></div>
+                                        <div class="corner tr"></div>
+                                        <div class="corner bl"></div>
+                                        <div class="corner br"></div>
+                                        
+                                        <!-- Face Label card inside viewport -->
+                                        <div class="face-label-card">
+                                            <span class="face-name">Budi</span>
+                                            <span class="face-relation">Cucu Pertama Anda</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Safe Zone Wandering (Scenario 4) -->
+                                <div class="ar-element hidden" id="ar-safe-zone">
+                                    <div class="floor-path">
+                                        <svg viewBox="0 0 100 100" class="path-svg">
+                                            <path d="M 50,90 Q 45,70 60,40 T 50,15" fill="none" stroke="#00A86B" stroke-width="5" stroke-dasharray="12 8" class="dash-path"/>
+                                            <polygon points="50,10 45,18 55,18" fill="#00A86B" class="path-arrow-head"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ar-card-bottom warning-hud glass-card-hud animate-fade-in">
+                                        <i data-lucide="home"></i>
+                                        <span>Arah pulang ke rumah</span>
+                                    </div>
+                                </div>
+
+                                <!-- Medication Reminder (Scenario 5) -->
+                                <div class="ar-element hidden" id="ar-med-prompt">
+                                    <div class="ar-center-alert glass-card-hud animate-fade-in">
+                                        <div class="icon-circle-emerald">
+                                            <i data-lucide="pill"></i>
+                                        </div>
+                                        <div class="alert-content">
+                                            <span class="alert-title">Waktunya Obat Pagi</span>
+                                            <span class="alert-sub">Ambil obat kapsul putih di meja makan</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Emergency SOS Overlay -->
+                                <div class="ar-element hidden" id="ar-sos-active">
+                                    <div class="ar-center-alert sos-hud glass-card-hud">
+                                        <div class="icon-circle-sos">
+                                            <span class="sos-pulse"></span>
+                                            <i data-lucide="phone-call"></i>
+                                        </div>
+                                        <div class="alert-content">
+                                            <span class="alert-title">Menghubungi Ibu Sari</span>
+                                            <span class="alert-sub">Bantuan sedang dalam perjalanan</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Audio and Spatial Indicator -->
+                        <div class="spatial-audio-bar" id="spatial-audio-bar">
+                            <span class="audio-wave-icon"><i data-lucide="volume-2"></i></span>
+                            <span class="audio-txt" id="audio-prompt-text">VOICE CUE: "Jalan ini akan menuntun Ibu."</span>
+                            <button class="audio-btn" id="play-audio-btn" title="Hear calm cue"><i data-lucide="play"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Caregiver Mobile App Mirror -->
+                <div class="dashboard-panel">
+                    <div class="phone-mockup">
+                        <div class="phone-inner">
+                            <div class="phone-camera"></div>
+                            
+                            <!-- Caregiver Screen -->
+                            <div class="caregiver-app">
+                                <div class="app-nav">
+                                    <div class="avatar"><i data-lucide="heart"></i></div>
+                                    <div class="app-nav-title">
+                                        <h3>AlzheimCare</h3>
+                                        <p>Patient: <span>Ibu Wati</span></p>
+                                    </div>
+                                    <span class="battery-status" id="phone-battery-lvl"><i data-lucide="battery"></i> 85%</span>
+                                </div>
+
+                                <div class="app-scroll-content">
+                                    
+                                    <!-- Dynamic Geofence Map Card -->
+                                    <div class="map-card-container">
+                                        <div class="map-mockup">
+                                            <div class="map-radar"></div>
+                                            <!-- Geofence circle -->
+                                            <div class="geofence-circle"></div>
+                                            <!-- Patient marker -->
+                                            <div class="patient-marker" id="map-patient-marker">
+                                                <span class="marker-pulse"></span>
+                                            </div>
+                                            <span class="map-gps-coord" id="map-gps-text">GPS: -6.2088, 106.8456</span>
+                                        </div>
+                                        <div class="map-info">
+                                            <span class="info-lbl"><i data-lucide="map"></i> Safe Zone Geofence</span>
+                                            <span class="status-badge status-ok" id="geofence-badge">Within Zone</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quick Status Blocks -->
+                                    <div class="status-grid">
+                                        <div class="status-mini-card">
+                                            <span class="mini-lbl">Activity</span>
+                                            <span class="mini-val" id="telemetry-activity"><i data-lucide="footprints"></i> Walking</span>
+                                        </div>
+                                        <div class="status-mini-card">
+                                            <span class="mini-lbl">NUI Device</span>
+                                            <span class="mini-val text-green" id="telemetry-device"><i data-lucide="wifi"></i> Connected</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Caregiver Alerts Area (Critical Event Popups) -->
+                                    <div class="caregiver-alerts-area" id="caregiver-alerts-area">
+                                        <!-- Alert boxes will appear here dynamically -->
+                                    </div>
+
+                                    <!-- Real-time Synchronization Log -->
+                                    <div class="sync-log-card">
+                                        <div class="log-header">
+                                            <span><i data-lucide="activity"></i> Synchronization Log</span>
+                                            <span class="badge-live">LIVE</span>
+                                        </div>
+                                        <div class="log-list" id="sync-log-list">
+                                            <!-- Log rows go here -->
+                                            <div class="log-row">
+                                                <span class="log-time">15:35:01</span>
+                                                <span class="log-txt">Glasses connected to charger dock</span>
+                                            </div>
+                                            <div class="log-row">
+                                                <span class="log-time">15:35:10</span>
+                                                <span class="log-txt">Battery status 100% (fully charged)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="app-footer-nav">
+                                    <button class="foot-btn active"><i data-lucide="home"></i><span>Home</span></button>
+                                    <button class="foot-btn"><i data-lucide="calendar"></i><span>Schedule</span></button>
+                                    <button class="foot-btn"><i data-lucide="users"></i><span>Faces</span></button>
+                                    <button class="foot-btn"><i data-lucide="settings"></i><span>Settings</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Product Design Info Details (SRS and Design Methods) -->
+        <section id="persona" class="details-section">
+            <h2 class="section-title text-center">Design Archetype: Primary Persona</h2>
+            <p class="section-desc text-center">To address the absolute lack of digital literacy, AlzheimAR provides a zero-interaction NUI.</p>
+            
+            <div class="details-grid-two">
+                <!-- Persona Card -->
+                <div class="details-card glass-card">
+                    <div class="persona-avatar-header">
+                        <div class="p-avatar">W</div>
+                        <div>
+                            <h3>Ibu Wati (72 Years Old)</h3>
+                            <p>Moderate-Stage Alzheimer's Patient</p>
+                        </div>
+                    </div>
+                    
+                    <div class="field-list">
+                        <div class="field-item">
+                            <span class="field-lbl">Cognitive Condition</span>
+                            <span class="field-val">Short-term memory loss, episodic spatial disorientation (sundowning 15:00-18:00), progressive face blindness (prosopagnosia).</span>
+                        </div>
+                        <div class="field-item">
+                            <span class="field-lbl">Tech Literacy</span>
+                            <span class="field-val"><strong>Zero.</strong> Cannot operate a smartphone or any device. Interacts only with landline telephones and analogue wall clocks.</span>
+                        </div>
+                        <div class="field-item">
+                            <span class="field-lbl">Daily Routine</span>
+                            <span class="field-val">Wakes at 05:30. Garden walk 09:00–11:00. Sundowning confusion spikes in the afternoon. Bed by 21:00.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empathy Map Card -->
+                <div class="details-card glass-card">
+                    <h3>Empathy Map Summary</h3>
+                    <div class="empathy-grid">
+                        <div class="empathy-quad">
+                            <h4>SAYS</h4>
+                            <p>"Ini siapa ya?" (Who is this?)</p>
+                            <p>"Tolong jangan tinggal saya sendiri."</p>
+                        </div>
+                        <div class="empathy-quad">
+                            <h4>THINKS</h4>
+                            <p>I cannot remember this person — I should know them.</p>
+                            <p>Am I safe? I am a burden to my family.</p>
+                        </div>
+                        <div class="empathy-quad">
+                            <h4>DOES</h4>
+                            <p>Wanders between rooms. Looks intently at visitors without greeting.</p>
+                        </div>
+                        <div class="empathy-quad">
+                            <h4>FEELS</h4>
+                            <p>Fear of getting lost, shame of forgetting, loneliness, calm in routine.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="methodology" class="details-section bg-gradient-dark">
+            <h2 class="section-title text-center">Design Methodology: Stingray Plan</h2>
+            <p class="section-desc text-center">Board of Innovation Framework: Train → Develop → Iterate</p>
+            
+            <div class="method-steps">
+                <div class="method-card">
+                    <span class="step-badge">01</span>
+                    <h3>TRAIN (AI Intensive)</h3>
+                    <p>Conducted literature reviews on Alzheimer's AR color psychology. Established calming vs. anxiety-triggering colors and the passive-only interaction hypothesis.</p>
+                </div>
+                <div class="method-card">
+                    <span class="step-badge">02</span>
+                    <h3>DEVELOP (AI + Human)</h3>
+                    <p>Designed the emerald arrow path concepts. Defined the cognitive load limit: maximum of 1 AR visual element active on the lens at a time.</p>
+                </div>
+                <div class="method-card">
+                    <span class="step-badge">03</span>
+                    <h3>ITERATE (Human Intensive)</h3>
+                    <p>Validated audio-visual sync: bone-conduction audio complements visuals. Set data contracts (JSON schema) for external caregiver synchronizations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical constraints -->
+        <section id="technical" class="details-section">
+            <div class="tech-card glass-card">
+                <div class="tech-header">
+                    <h2>Technical Specifications & Constraints</h2>
+                    <span class="compliance-badge">IEEE Std 830-1998 Compliant</span>
+                </div>
+                
+                <div class="tech-columns">
+                    <div class="tech-col">
+                        <h3><i data-lucide="cpu"></i> On-Device AI Processing</h3>
+                        <ul>
+                            <li><strong>Edge-AI Face Recognition:</strong> &lt;3s latency, &ge;90% accuracy in typical indoor settings.</li>
+                            <li><strong>Voice Spotting:</strong> Offline wake-word detection for "Tolong" SOS trigger.</li>
+                            <li><strong>No Cloud Streaming:</strong> Raw video content is processed entirely locally on the glasses to protect privacy.</li>
+                        </ul>
+                    </div>
+                    <div class="tech-col">
+                        <h3><i data-lucide="battery-charging"></i> Form & Power</h3>
+                        <ul>
+                            <li><strong>Form Factor:</strong> Conventional eyewear (Meta Ray-Ban style) weighing less than 60g for all-day comfort.</li>
+                            <li><strong>Battery:</strong> &ge;10 hours continuous active NUI overlays, or &ge;14 hours in low-activity mode.</li>
+                            <li><strong>No Fine-motor Buttons:</strong> Single power button located on the charging dock only.</li>
+                        </ul>
+                    </div>
+                    <div class="tech-col">
+                        <h3><i data-lucide="shield-check"></i> Security & Reliability</h3>
+                        <ul>
+                            <li><strong>Offline Resilience:</strong> Schedule cached locally for &ge;24h. The glasses operate normally even if connectivity is lost.</li>
+                            <li><strong>Fail-safe Revert:</strong> Hardware errors cause the display to turn off completely, reverting to a normal passive eyewear lens.</li>
+                            <li><strong>Data Protection:</strong> TLS 1.3 transit encryption, AES-256 for local biometric models.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 AlzheimAR. All rights reserved. Designed for Ibu Wati & caregivers who need the glasses to remember.</p>
+    </footer>
+
+    <!-- Web Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
